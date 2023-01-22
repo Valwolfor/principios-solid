@@ -13,15 +13,19 @@ import java.util.ArrayList;
  * Editor: @Valwolfor
  * @see <a href="https://github.com/Open-Bootcamp/java_avanzado/tree/master/sesiones_19_20_21/src/Sesion21/Inicial">Repositorio</a>
  */
-public class Usuarios {
-    private final UsuariosDBData usuariosBD = new UsuariosDBData();
+public  class Usuarios {
+    private UsuariosDB usuariosBD;
     private ArrayList<Usuario> usuarios;
+
+    public Usuarios(UsuariosDB usuariosBD){
+        this.usuariosBD = usuariosBD;
+    }
 
     /**
      * Imprime los usuarios en el archivo, que obtiene de la BD.
      */
     public void getAll() {
-        for (Usuario usuario : usuariosBD.parseToArrayUsuario()) {
+        for (Usuario usuario : usuariosBD.obtenerArrayUsuarios()) {
             System.out.println("======================================================");
             System.out.println("Nombre de Usuario: " + usuario.getNombreUsuario() +
                     "\n Nombre: " + usuario.getNombre() +
@@ -39,7 +43,7 @@ public class Usuarios {
      * @return un objeto tipo Usuario del si existe el nombre de usuario pasado por parametro, en
      * caso contrario returna null.
      */
-    public Usuario getUsuario(String sUsername) {
+    public Usuario getUser(String sUsername) {
         return usuariosBD.verificarUsuario(sUsername);
     }
 
@@ -48,7 +52,7 @@ public class Usuarios {
      *
      * @param newUsuario Objeto de Usuario que se ingresa en el archivo.
      */
-    public void create(Usuario newUsuario) {
+    public void addUser(Usuario newUsuario) {
         usuariosBD.addUser(newUsuario);
     }
 
@@ -57,11 +61,12 @@ public class Usuarios {
      *
      * @param username Nombre de usuario de Usuario a eliminar.
      */
-    public void delete(String username) {
-        usuariosBD.deleteUsuario(username);
+    public void deleteUser(String username) {
+        usuariosBD.deleteUser(username);
     }
 
-    public UsuariosDBData getUsuariosBD() {
-        return usuariosBD;
+
+    public UsuariosDB getUsuariosBD() {
+        return this.usuariosBD;
     }
 }

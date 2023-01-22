@@ -4,6 +4,10 @@ package single_responsability_and_SOLID;
  * Herada de la Clase de gestion de Usuarios y extiende métodos de verificación de nivel de acceso.
  */
 public class UsuariosNivel extends Usuarios {
+    public UsuariosNivel(UsuariosDB usuariosBD) {
+        super(usuariosBD);
+    }
+
     public boolean isAdmin(Usuario user) {
         int level = 10;
         String lvlName = "administrador";
@@ -24,16 +28,17 @@ public class UsuariosNivel extends Usuarios {
 
     /**
      * Obtenido el resultado del chequeo, gestiona mensaje según resultado.
-     * @param check boolean de resultado sobre nivel de acceso.
+     *
+     * @param check   boolean de resultado sobre nivel de acceso.
      * @param lvlName String del nombre de nivel.
      * @return booleano sobre nivel de usuario.
      */
-    private boolean senderAnswer(boolean check, String lvlName){
+    private boolean senderAnswer(boolean check, String lvlName) {
         if (!check) {
             System.out.println("No tiene los permisos suficientes para " + lvlName);
             return false;
         }
-        System.out.println("Tiene un nivel de acceso de "+ lvlName);
+        System.out.println("Tiene un nivel de acceso de " + lvlName);
         return true;
     }
 
@@ -46,8 +51,7 @@ public class UsuariosNivel extends Usuarios {
      * @return Boolean que indica el nivel de acceso.
      */
     private boolean checkLevelAccess(Usuario user, int lvlTest) {
-        Usuario usuarioGetted =
-                super.getUsuariosBD().verificarUsuario(user.getNombreUsuario());
+        Usuario usuarioGetted = super.getUser(user.getNombreUsuario());
         System.out.println("El usuario: " + user.getNombreUsuario());
 
         if (usuarioGetted != null) {

@@ -1,5 +1,6 @@
-import single_responsability_and_SOLID.Usuarios;
 import single_responsability_and_SOLID.UsuarioBuilder;
+import single_responsability_and_SOLID.UsuariosDBMemory;
+import single_responsability_and_SOLID.UsuariosDBTxt;
 import single_responsability_and_SOLID.UsuariosNivel;
 
 /**
@@ -18,9 +19,9 @@ public class Main {
      * @author Valwolfor
      */
     public static void main(String[] args) {
-        UsuariosNivel usuarios = new UsuariosNivel();
+        UsuariosNivel usuarios = new UsuariosNivel(new UsuariosDBMemory());
 
-        usuarios.create(new UsuarioBuilder(args[1])
+        usuarios.addUser(new UsuarioBuilder(args[1])
                 .setNombre(args[3])
                 .setApellidos(args[5])
                 .setEmail(args[7])
@@ -30,7 +31,7 @@ public class Main {
 
         System.out.println("Se creo el primer usuario, el por argumentos.");
 
-        usuarios.create(new UsuarioBuilder("openbootcamp")
+        usuarios.addUser(new UsuarioBuilder("openbootcamp")
                 .setNombre("Open")
                 .setApellidos("Bootcamp")
                 .setEmail("ejemplos@open-bootcamp.com")
@@ -40,7 +41,7 @@ public class Main {
 
         System.out.println("Se creo segundo usuario por método.");
 
-        usuarios.create(new UsuarioBuilder("openbootcamp2")
+        usuarios.addUser(new UsuarioBuilder("openbootcamp2")
                 .setNombre("Open2")
                 .setApellidos("Bootcamp2")
                 .setEmail("ejemplos2@open-bootcamp.com")
@@ -50,7 +51,7 @@ public class Main {
 
         System.out.println("Se creo tercer usuario por método.");
 
-        usuarios.create(new UsuarioBuilder("openbootcamp3")
+        usuarios.addUser(new UsuarioBuilder("openbootcamp3")
                 .setNombre("Open3")
                 .setApellidos("Bootcamp3")
                 .setEmail("ejemplos3@open-bootcamp.com")
@@ -60,7 +61,7 @@ public class Main {
 
         System.out.println("Se creo cuarto usuario por método.");
 
-        usuarios.create(new UsuarioBuilder("openbootcamp3")
+        usuarios.addUser(new UsuarioBuilder("openbootcamp3")
                 .setNombre("Open3")
                 .setApellidos("Bootcamp3")
                 .setEmail("ejemplos3@open-bootcamp.com")
@@ -72,19 +73,19 @@ public class Main {
 
         usuarios.getAll();
 
-        System.out.println("\n" + usuarios.getUsuario("Valwolfor").getNombreUsuario() + "\n");
+        System.out.println("\n" + usuarios.getUser("Valwolfor").getNombreUsuario() + "\n");
 
-        usuarios.delete("openbootcamp");
+        usuarios.deleteUser("openbootcamp");
 
         usuarios.getAll();
 
-        usuarios.delete("openbootcamp");
+        usuarios.deleteUser("openbootcamp");
 
-        usuarios.getUsuariosBD().getData();
+//        usuarios.getData();
 
-        usuarios.isAdmin(usuarios.getUsuario("Valwolfor"));
-        usuarios.isStudent(usuarios.getUsuario("openbootcamp2"));
-        usuarios.isGuest(usuarios.getUsuario("openbootcamp3"));
+        usuarios.isAdmin(usuarios.getUser("Valwolfor"));
+        usuarios.isStudent(usuarios.getUser("openbootcamp2"));
+        usuarios.isGuest(usuarios.getUser("openbootcamp3"));
 
     }
 
