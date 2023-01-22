@@ -1,4 +1,4 @@
 Valwolfor,Diego-Felipe,Gallo-García,diegofelipe.gallo@gmail.com,10,
 openbootcamp2,Open2,Bootcamp2,ejemplos2@open-bootcamp.com,8,
-openbootcamp3,Open3,Bootcamp3,ejemplos3@open-bootcamp.com,5,
+openbootcamp3,Open3,Bootcamp3,ejemplos3@open-bootcamp.com,1,
 

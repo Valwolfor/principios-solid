@@ -1,5 +1,6 @@
 import single_responsability_and_SOLID.Usuarios;
 import single_responsability_and_SOLID.UsuarioBuilder;
+import single_responsability_and_SOLID.UsuariosNivel;
 
 /**
  * @author : @vroman
@@ -17,7 +18,7 @@ public class Main {
      * @author Valwolfor
      */
     public static void main(String[] args) {
-        Usuarios usuarios = new Usuarios();
+        UsuariosNivel usuarios = new UsuariosNivel();
 
         usuarios.create(new UsuarioBuilder(args[1])
                 .setNombre(args[3])
@@ -53,7 +54,7 @@ public class Main {
                 .setNombre("Open3")
                 .setApellidos("Bootcamp3")
                 .setEmail("ejemplos3@open-bootcamp.com")
-                .setNivelDeAcceso(5)
+                .setNivelDeAcceso(1)
                 .getUsuario()
         );
 
@@ -80,6 +81,10 @@ public class Main {
         usuarios.delete("openbootcamp");
 
         usuarios.getUsuariosBD().getData();
+
+        usuarios.isAdmin(usuarios.getUsuario("Valwolfor"));
+        usuarios.isStudent(usuarios.getUsuario("openbootcamp2"));
+        usuarios.isGuest(usuarios.getUsuario("openbootcamp3"));
 
     }
 
