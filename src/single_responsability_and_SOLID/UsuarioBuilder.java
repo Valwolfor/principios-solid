@@ -1,4 +1,4 @@
-package single_responsability;
+package single_responsability_and_SOLID;
 
 /**
  * Constructor de usuario.

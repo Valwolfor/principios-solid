@@ -1,4 +1,4 @@
-package single_responsability;
+package single_responsability_and_SOLID;
 
 import java.util.ArrayList;
 
@@ -14,7 +14,7 @@ import java.util.ArrayList;
  * @see <a href="https://github.com/Open-Bootcamp/java_avanzado/tree/master/sesiones_19_20_21/src/Sesion21/Inicial">Repositorio</a>
  */
 public class Usuarios {
-    private UsuariosDB usuariosBD = new UsuariosDB();
+    private final UsuariosDBData usuariosBD = new UsuariosDBData();
     private ArrayList<Usuario> usuarios;
 
     /**
@@ -59,5 +59,9 @@ public class Usuarios {
      */
     public void delete(String username) {
         usuariosBD.deleteUsuario(username);
+    }
+
+    public UsuariosDBData getUsuariosBD() {
+        return usuariosBD;
     }
 }

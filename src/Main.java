@@ -1,5 +1,5 @@
-import single_responsability.UsuarioBuilder;
-import single_responsability.Usuarios;
+import single_responsability_and_SOLID.Usuarios;
+import single_responsability_and_SOLID.UsuarioBuilder;
 
 /**
  * @author : @vroman
@@ -76,6 +76,10 @@ public class Main {
         usuarios.delete("openbootcamp");
 
         usuarios.getAll();
+
+        usuarios.delete("openbootcamp");
+
+        usuarios.getUsuariosBD().getData();
 
     }
 

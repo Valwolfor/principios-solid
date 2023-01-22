@@ -1,4 +1,4 @@
-package single_responsability;
+package single_responsability_and_SOLID;
 
 /**
  * La clase que agrupa los elementos de cada usuario. Implementa un patrón builder.
