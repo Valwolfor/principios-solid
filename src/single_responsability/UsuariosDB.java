@@ -1,4 +1,4 @@
-package cleaning;
+package single_responsability;
 
 import java.io.*;
 import java.util.ArrayList;

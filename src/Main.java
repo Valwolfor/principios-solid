@@ -1,5 +1,5 @@
-import cleaning.UsuarioBuilder;
-import cleaning.Usuarios;
+import single_responsability.UsuarioBuilder;
+import single_responsability.Usuarios;
 
 /**
  * @author : @vroman

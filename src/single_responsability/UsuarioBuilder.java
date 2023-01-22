@@ -1,4 +1,4 @@
-package cleaning;
+package single_responsability;
 
 /**
  * Constructor de usuario.
