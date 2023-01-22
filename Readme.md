@@ -1,5 +1,8 @@
 # Prinicipios SOLID
 
+Los principios se interrelaciona, pero no siempre se puede aplicar al pie de 
+la letra. 
+
 ## Single Responsibility
 
 Cada clase debe manejar una única responsabilidad. Además deben estár 
@@ -14,5 +17,13 @@ afectar la lógica existente.
 Se debe poder expandir las funcionalidades, pero sin tener que cambiar la ya 
 existente. Ya sea con herencia pero no por nuevos métodos. Mejor derivar. Se 
 debe crear una nueva clase para cada funcionalidad nueva, extendiendo. 
+
+## Linskov sustitution princilple
+
+Dada una clase que especifique en una menor, está podrán ser intercambiables 
+entre las superiores e inferiores. Las hijas no debería tener más métodos 
+que el padre para poder funcionar correctamente. Es mejor que los padres se 
+base en la mayor abstración. Se necesita de un alto nivel de abstracción en 
+el análisis del software. 
 
 
