@@ -1,4 +1,6 @@
-package single_responsability_and_SOLID;
+package single_responsability_and_SOLID.controller;
+
+import single_responsability_and_SOLID.beans.Usuario;
 
 /**
  * Constructor de usuario.

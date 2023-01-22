@@ -1,7 +1,8 @@
-import single_responsability_and_SOLID.UsuarioBuilder;
-import single_responsability_and_SOLID.UsuariosDBMemory;
-import single_responsability_and_SOLID.UsuariosDBTxt;
-import single_responsability_and_SOLID.UsuariosNivel;
+import single_responsability_and_SOLID.controller.UsuarioBuilder;
+import single_responsability_and_SOLID.controller.Usuarios;
+import single_responsability_and_SOLID.controller.UsuariosData;
+import single_responsability_and_SOLID.data_access.UsuariosDBMemory;
+import single_responsability_and_SOLID.services.UsuariosNivel;
 
 /**
  * @author : @vroman
@@ -19,7 +20,7 @@ public class Main {
      * @author Valwolfor
      */
     public static void main(String[] args) {
-        UsuariosNivel usuarios = new UsuariosNivel(new UsuariosDBMemory());
+        Usuarios usuarios = new UsuariosData(new UsuariosDBMemory());
 
         usuarios.addUser(new UsuarioBuilder(args[1])
                 .setNombre(args[3])
@@ -83,9 +84,11 @@ public class Main {
 
 //        usuarios.getData();
 
-        usuarios.isAdmin(usuarios.getUser("Valwolfor"));
-        usuarios.isStudent(usuarios.getUser("openbootcamp2"));
-        usuarios.isGuest(usuarios.getUser("openbootcamp3"));
+        UsuariosNivel usuariosLvl = new UsuariosNivel(usuarios);
+
+        usuariosLvl.isAdmin(usuarios.getUser("Valwolfor"));
+        usuariosLvl.isStudent(usuarios.getUser("openbootcamp2"));
+        usuariosLvl.isGuest(usuarios.getUser("openbootcamp3"));
 
     }
 

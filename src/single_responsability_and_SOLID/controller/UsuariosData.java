@@ -1,15 +1,18 @@
-package single_responsability_and_SOLID;
+package single_responsability_and_SOLID.controller;
+
+import single_responsability_and_SOLID.data_access.UsuariosDB;
+import single_responsability_and_SOLID.beans.Usuario;
 
 /**
  * Busca llevar registro de los proceso realizados. Extiende la funcionalidad de agregar y
  * eliminar de la BD.
  * Es un decorador.
  */
-public class UsuariosDBData extends Usuarios {
+public class UsuariosData extends Usuarios {
     private int insertions;
     private int deletions;
 
-    public UsuariosDBData(UsuariosDB usuariosBD) {
+    public UsuariosData(UsuariosDB usuariosBD) {
         super(usuariosBD);
     }
 

@@ -1,4 +1,7 @@
-package single_responsability_and_SOLID;
+package single_responsability_and_SOLID.controller;
+
+import single_responsability_and_SOLID.beans.Usuario;
+import single_responsability_and_SOLID.data_access.UsuariosDB;
 
 import java.util.ArrayList;
 

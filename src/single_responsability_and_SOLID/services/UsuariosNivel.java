@@ -1,11 +1,20 @@
-package single_responsability_and_SOLID;
+package single_responsability_and_SOLID.services;
+
+import single_responsability_and_SOLID.beans.Usuario;
+import single_responsability_and_SOLID.controller.Usuarios;
 
 /**
- * Herada de la Clase de gestion de Usuarios y extiende métodos de verificación de nivel de acceso.
+ * Recibe un objeto de gestion de Usuarios y verifica el nivel de acceso.
  */
-public class UsuariosNivel extends Usuarios {
-    public UsuariosNivel(UsuariosDB usuariosBD) {
-        super(usuariosBD);
+public class UsuariosNivel {
+    Usuarios usuarios;
+
+    private UsuariosNivel(){
+
+    }
+
+    public UsuariosNivel(Usuarios usuarios){
+        this.usuarios = usuarios;
     }
 
     public boolean isAdmin(Usuario user) {
@@ -51,7 +60,7 @@ public class UsuariosNivel extends Usuarios {
      * @return Boolean que indica el nivel de acceso.
      */
     private boolean checkLevelAccess(Usuario user, int lvlTest) {
-        Usuario usuarioGetted = super.getUser(user.getNombreUsuario());
+        Usuario usuarioGetted = usuarios.getUser(user.getNombreUsuario());
         System.out.println("El usuario: " + user.getNombreUsuario());
 
         if (usuarioGetted != null) {

@@ -1,4 +1,6 @@
-package single_responsability_and_SOLID;
+package single_responsability_and_SOLID.data_access;
+
+import single_responsability_and_SOLID.beans.Usuario;
 
 import java.util.ArrayList;
 
@@ -6,7 +8,7 @@ import java.util.ArrayList;
  * Guarda los usuario en memoria en vez de un archivo de txt.
  */
 public class UsuariosDBMemory extends UsuariosDB {
-    private ArrayList<Usuario> usuarios = new ArrayList<>();
+    private final ArrayList<Usuario> usuarios = new ArrayList<>();
 
     /**
      * Agrega usuario al array.

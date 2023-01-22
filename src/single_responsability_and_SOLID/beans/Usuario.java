@@ -1,4 +1,4 @@
-package single_responsability_and_SOLID;
+package single_responsability_and_SOLID.beans;
 
 /**
  * La clase que agrupa los elementos de cada usuario. Implementa un patrón builder.
