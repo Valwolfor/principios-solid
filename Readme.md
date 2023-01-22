@@ -24,6 +24,11 @@ Dada una clase que especifique en una menor, está podrán ser intercambiables
 entre las superiores e inferiores. Las hijas no debería tener más métodos 
 que el padre para poder funcionar correctamente. Es mejor que los padres se 
 base en la mayor abstración. Se necesita de un alto nivel de abstracción en 
-el análisis del software. 
+el análisis del software.
+
+## Interface segregation
+
+No se debería interfaces grandes con métodos que no serán usados. Por lo 
+cual se deben poder crear varias. 
 
 
