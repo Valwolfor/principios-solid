@@ -1,19 +1,19 @@
 package single_responsability_and_SOLID.services;
 
 import single_responsability_and_SOLID.beans.Usuario;
-import single_responsability_and_SOLID.data_access.UsuariosDB;
+import single_responsability_and_SOLID.controller.Usuarios;
 
 /**
  * Recibe un objeto de gestion de Usuarios y verifica el nivel de acceso.
  */
 public class UsuariosNivel {
-    UsuariosDB usuarios;
+    Usuarios usuarios;
 
     private UsuariosNivel(){
 
     }
 
-    public UsuariosNivel(UsuariosDB usuarios){
+    public UsuariosNivel(Usuarios usuarios){
         this.usuarios = usuarios;
     }
 
@@ -60,7 +60,7 @@ public class UsuariosNivel {
      * @return Boolean que indica el nivel de acceso.
      */
     private boolean checkLevelAccess(Usuario user, int lvlTest) {
-        Usuario usuarioGetted = usuarios.verificarUsuario(user.getNombreUsuario());
+        Usuario usuarioGetted = usuarios.getUser(user.getNombreUsuario());
         System.out.println("El usuario: " + user.getNombreUsuario());
 
         if (usuarioGetted != null) {

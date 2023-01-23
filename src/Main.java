@@ -22,7 +22,8 @@ public class Main {
      * @author Valwolfor
      */
     public static void main(String[] args) {
-        UsuariosDB usuarios = factoryUsuarioDB("texto");
+        UsuariosDB usuariosDB = factoryUsuarioDB("texto");
+        Usuarios usuarios = new Usuarios(usuariosDB);
 
         usuarios.addUser(new UsuarioBuilder(args[1])
                 .setNombre(args[3])
@@ -74,24 +75,25 @@ public class Main {
 
         System.out.println("Se intentó agregar cuarto usuario de nuevo.");
 
-        usuarios.obtenerArrayUsuarios();
+        usuarios.getAll();
 
-        System.out.println("\n" + usuarios.verificarUsuario("Valwolfor").getNombreUsuario() + "\n");
+        System.out.println("\n" + usuarios.getUser("Valwolfor").getNombreUsuario() + "\n");
 
         usuarios.deleteUser("openbootcamp");
 
-        usuarios.obtenerArrayUsuarios();
+        usuarios.getAll();
 
         usuarios.deleteUser("openbootcamp");
 
         UsuariosNivel usuariosLvl = new UsuariosNivel(usuarios);
+        System.out.println("=============================================");
 
-        usuariosLvl.isAdmin(usuarios.verificarUsuario("Valwolfor"));
-        usuariosLvl.isStudent(usuarios.verificarUsuario("openbootcamp2"));
-        usuariosLvl.isGuest(usuarios.verificarUsuario("openbootcamp3"));
+        usuariosLvl.isAdmin(usuarios.getUser("Valwolfor"));
+        usuariosLvl.isStudent(usuarios.getUser("openbootcamp2"));
+        usuariosLvl.isGuest(usuarios.getUser("openbootcamp3"));
 
 
-        mostrarEstadisticas(usuarios);
+        mostrarEstadisticas(usuariosDB);
 
     }
 
