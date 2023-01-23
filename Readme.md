@@ -29,6 +29,7 @@ el análisis del software.
 ## Interface segregation
 
 No se debería interfaces grandes con métodos que no serán usados. Por lo 
-cual se deben poder crear varias. 
+cual se deben poder crear varias. Cada una según el nivel de abstracció. Se 
+puede usar el instanceOf para verificar instancias. 
 
 

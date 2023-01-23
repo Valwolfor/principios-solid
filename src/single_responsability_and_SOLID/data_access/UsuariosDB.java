@@ -7,7 +7,7 @@ import java.util.ArrayList;
 /**
  * Está clase podría no ser abstracta y aun así funcionaría el código al inyectarla.
  */
-abstract public class UsuariosDB {
+ public interface UsuariosDB {
 
     public abstract ArrayList<Usuario> obtenerArrayUsuarios();
 

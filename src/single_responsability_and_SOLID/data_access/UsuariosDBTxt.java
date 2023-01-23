@@ -7,9 +7,12 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UsuariosDBTxt extends UsuariosDB{
+public class UsuariosDBTxt implements UsuariosDB, UsuariosDBData {
     private final String ficheroDatos = "usuarios.txt";
     private ArrayList<Usuario> usuariosArray;
+
+    private int insertions = 0;
+    private int deletions = 0;
 
     /**
      * Agrega un usuario a la bd de datos, sobre escribiendo el archivo y verificando la
@@ -20,12 +23,13 @@ public class UsuariosDBTxt extends UsuariosDB{
     @Override
     public void addUser(Usuario newUsuario) {
         StringBuilder buffer = new StringBuilder();
-
-        if (verificarUsuario(newUsuario.getNombreUsuario()) != null) {
+        Usuario existente = verificarUsuario(newUsuario.getNombreUsuario());
+        if (existente != null) {
             System.out.println("Usuario: " + newUsuario.getNombreUsuario() + " ya existe.");
             return;
         }
 
+        insertions++;
         buffer.append(parseBufferUsuario(newUsuario));
         writeInFlie(buffer.toString());
     }
@@ -41,12 +45,20 @@ public class UsuariosDBTxt extends UsuariosDB{
         StringBuilder buffer = new StringBuilder();
         usuariosArray = obtenerArrayUsuarios();
 
+        Usuario existente = verificarUsuario(username);
+        if (existente == null) {
+            System.out.println("El usuario: " + username + " no existe.");
+            return;
+        }
+
         for (Usuario usuarioActual : usuariosArray) {
-            if (!usuarioActual.getNombreUsuario().equalsIgnoreCase(username)) {
+            String nombreActual = usuarioActual.getNombreUsuario();
+            if (!nombreActual.equalsIgnoreCase(username)) {
                 buffer.append(parseBufferUsuario(usuarioActual)).append("\n");
             }
         }
-
+        System.out.println("El usuario: " + username + " fue eliminado.");
+        deletions++;
         reWriteInFlie(buffer.toString());
     }
 
@@ -93,6 +105,25 @@ public class UsuariosDBTxt extends UsuariosDB{
         }
 
         return usuarios;
+    }
+
+    /**
+     * Devuelve las estadísticas de la implentación
+     */
+    @Override
+    public void getData() {
+        System.out.println("Total de inserciones fueron: " + insertions + "\r\n " +
+                "Total de eliminaciones: " + deletions);
+    }
+
+    @Override
+    public int getInsertions() {
+        return insertions;
+    }
+
+    @Override
+    public int getDeletions() {
+        return deletions;
     }
 
     /**
@@ -183,4 +214,6 @@ public class UsuariosDBTxt extends UsuariosDB{
             System.out.println(element);
         }
     }
+
+
 }

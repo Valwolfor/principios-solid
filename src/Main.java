@@ -1,7 +1,9 @@
 import single_responsability_and_SOLID.controller.UsuarioBuilder;
 import single_responsability_and_SOLID.controller.Usuarios;
-import single_responsability_and_SOLID.controller.UsuariosData;
+import single_responsability_and_SOLID.data_access.UsuariosDB;
+import single_responsability_and_SOLID.data_access.UsuariosDBData;
 import single_responsability_and_SOLID.data_access.UsuariosDBMemory;
+import single_responsability_and_SOLID.data_access.UsuariosDBTxt;
 import single_responsability_and_SOLID.services.UsuariosNivel;
 
 /**
@@ -20,7 +22,7 @@ public class Main {
      * @author Valwolfor
      */
     public static void main(String[] args) {
-        Usuarios usuarios = new UsuariosData(new UsuariosDBMemory());
+        UsuariosDB usuarios = factoryUsuarioDB("texto");
 
         usuarios.addUser(new UsuarioBuilder(args[1])
                 .setNombre(args[3])
@@ -72,25 +74,48 @@ public class Main {
 
         System.out.println("Se intentó agregar cuarto usuario de nuevo.");
 
-        usuarios.getAll();
+        usuarios.obtenerArrayUsuarios();
 
-        System.out.println("\n" + usuarios.getUser("Valwolfor").getNombreUsuario() + "\n");
-
-        usuarios.deleteUser("openbootcamp");
-
-        usuarios.getAll();
+        System.out.println("\n" + usuarios.verificarUsuario("Valwolfor").getNombreUsuario() + "\n");
 
         usuarios.deleteUser("openbootcamp");
 
-//        usuarios.getData();
+        usuarios.obtenerArrayUsuarios();
+
+        usuarios.deleteUser("openbootcamp");
 
         UsuariosNivel usuariosLvl = new UsuariosNivel(usuarios);
 
-        usuariosLvl.isAdmin(usuarios.getUser("Valwolfor"));
-        usuariosLvl.isStudent(usuarios.getUser("openbootcamp2"));
-        usuariosLvl.isGuest(usuarios.getUser("openbootcamp3"));
+        usuariosLvl.isAdmin(usuarios.verificarUsuario("Valwolfor"));
+        usuariosLvl.isStudent(usuarios.verificarUsuario("openbootcamp2"));
+        usuariosLvl.isGuest(usuarios.verificarUsuario("openbootcamp3"));
+
+
+        mostrarEstadisticas(usuarios);
 
     }
 
+    public static void mostrarEstadisticas(UsuariosDB usarioDB) {
+        if (usarioDB instanceof UsuariosDBMemory) {
+            System.out.println("Los datos desde memoria");
+            ((UsuariosDBMemory) usarioDB).getData();
+        } else {
+            System.out.println("Los datos desde archivo de texto");
+            ((UsuariosDBTxt) usarioDB).getData();
+        }
+    }
+
+    public static UsuariosDB factoryUsuarioDB(String metodo) {
+        if (metodo.equalsIgnoreCase("memoria")) {
+            System.out.println("Se selecionó el método por memoria.");
+            return new UsuariosDBMemory();
+        } else if (metodo.equalsIgnoreCase("texto")) {
+            System.out.println("Se selecionó el método por archivo de texto.");
+            return new UsuariosDBTxt();
+        } else {
+            System.out.println("Ingrese un método valido, por favor.");
+        }
+        return null;
+    }
 }
 

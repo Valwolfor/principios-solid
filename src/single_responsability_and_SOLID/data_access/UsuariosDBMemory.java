@@ -7,17 +7,25 @@ import java.util.ArrayList;
 /**
  * Guarda los usuario en memoria en vez de un archivo de txt.
  */
-public class UsuariosDBMemory extends UsuariosDB {
+public class UsuariosDBMemory implements UsuariosDB, UsuariosDBData {
     private final ArrayList<Usuario> usuarios = new ArrayList<>();
+    private int insertions = 0;
+    private int deletions = 0;
 
     /**
-     * Agrega usuario al array.
-     *
-     * @param newUsuario Objeto Usuario a agregar.
+     * Agrega usuario en caso de no existir. Registra la inserción.
+     * @param newUsuario Objeto Usuario a insertar.
      */
     @Override
     public void addUser(Usuario newUsuario) {
-        usuarios.add(newUsuario);
+        Usuario existente = verificarUsuario(newUsuario.getNombreUsuario());
+        if (existente == null) {
+            usuarios.add(newUsuario);
+            insertions++;
+            return;
+        }
+
+        System.out.println("El usuario ingresado ya se encuentra registrado.");
     }
 
     /**
@@ -47,10 +55,12 @@ public class UsuariosDBMemory extends UsuariosDB {
         Usuario usuario = verificarUsuario(username);
         if (usuario != null) {
             usuarios.remove(usuario);
+            System.out.println("El usuario: " + username + " fue eliminado.");
+            deletions++;
             return;
         }
 
-        System.out.println("El usuario no existe en el registro.");
+        System.out.println("El usuario: " + username + " no existe.");
     }
 
     /**
@@ -63,5 +73,22 @@ public class UsuariosDBMemory extends UsuariosDB {
         return usuarios;
     }
 
+    /**
+     * Devuelve las estadísticas de la implentación
+     */
+    @Override
+    public void getData() {
+        System.out.println("Total de inserciones fueron: " + insertions + "\r\n " +
+                "Total de eliminaciones: " + deletions);
+    }
 
+    @Override
+    public int getInsertions() {
+        return insertions;
+    }
+
+    @Override
+    public int getDeletions() {
+        return deletions;
+    }
 }
