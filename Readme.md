@@ -32,4 +32,11 @@ No se debería interfaces grandes con métodos que no serán usados. Por lo
 cual se deben poder crear varias. Cada una según el nivel de abstracció. Se 
 puede usar el instanceOf para verificar instancias. 
 
+## Dependencies reversal
+
+Las dependencias deben ser dadas en las abstraciones no en lo concreto, los 
+detalles dependen de las abstraciones. Lo cual resulta que sea opaco al 
+detalle en las abstraciones, sino en las concreciones u envoltorios para 
+ocultar la lógica interna.
+
 
