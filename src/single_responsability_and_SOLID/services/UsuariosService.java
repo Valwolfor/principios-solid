@@ -1,7 +1,7 @@
-package single_responsability_and_SOLID.controller;
+package single_responsability_and_SOLID.services;
 
-import single_responsability_and_SOLID.beans.Usuario;
-import single_responsability_and_SOLID.data_access.UsuariosDB;
+import single_responsability_and_SOLID.entities.Usuario;
+import single_responsability_and_SOLID.repositories.UsuariosDB;
 
 import java.util.ArrayList;
 
@@ -16,27 +16,20 @@ import java.util.ArrayList;
  * Editor: @Valwolfor
  * @see <a href="https://github.com/Open-Bootcamp/java_avanzado/tree/master/sesiones_19_20_21/src/Sesion21/Inicial">Repositorio</a>
  */
-public  class Usuarios {
+//@Service
+public class UsuariosService {
     private UsuariosDB usuariosBD;
     private ArrayList<Usuario> usuarios;
 
-    public Usuarios(UsuariosDB usuariosBD){
+    public UsuariosService(UsuariosDB usuariosBD) {
         this.usuariosBD = usuariosBD;
     }
 
     /**
      * Imprime los usuarios en el archivo, que obtiene de la BD.
      */
-    public void getAll() {
-        for (Usuario usuario : usuariosBD.obtenerArrayUsuarios()) {
-            System.out.println("======================================================");
-            System.out.println("Nombre de Usuario: " + usuario.getNombreUsuario() +
-                    "\n Nombre: " + usuario.getNombre() +
-                    "\n Apellidos: " + usuario.getApellidos() +
-                    "\n Correo: " + usuario.getEmail() +
-                    "\n Nivel de acceso: " + usuario.getNivelAcceso()
-            );
-        }
+    public ArrayList<Usuario> getAll() {
+        return usuariosBD.obtenerArrayUsuarios();
     }
 
     /**

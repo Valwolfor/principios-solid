@@ -1,4 +1,4 @@
-package single_responsability_and_SOLID.data_access;
+package single_responsability_and_SOLID.repositories;
 
 /**
  * Busca llevar registro de los proceso realizados. Extiende la funcionalidad de agregar y

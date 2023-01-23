@@ -1,13 +1,13 @@
-package single_responsability_and_SOLID.data_access;
+package single_responsability_and_SOLID.repositories;
 
-import single_responsability_and_SOLID.controller.UsuarioBuilder;
-import single_responsability_and_SOLID.beans.Usuario;
+import single_responsability_and_SOLID.services.UsuarioBuilder;
+import single_responsability_and_SOLID.entities.Usuario;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class UsuariosDBTxt implements UsuariosDB, UsuariosDBData {
+public class UsuariosDBTxt extends UsuariosDB implements  UsuariosDBData {
     private final String ficheroDatos = "usuarios.txt";
     private ArrayList<Usuario> usuariosArray;
 

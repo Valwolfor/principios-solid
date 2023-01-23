@@ -39,4 +39,23 @@ detalles dependen de las abstraciones. Lo cual resulta que sea opaco al
 detalle en las abstraciones, sino en las concreciones u envoltorios para 
 ocultar la lógica interna.
 
+# Clean Architecture
+
+Se usa diferentes capas con solo uno de alcance arriba abajo.
+
+Las entidedes contiene los POJO que serán cómo beans para poder manejar los 
+datos. Luego en repositorios se manejan todas las clases relacionadas con la 
+persistencia de los datos. 
+
+Los servicios sera la lógica de negocio, gestionando los respositorios con 
+las entidades. 
+El controlador será el que organizará controlará la comunicación entre capas,
+cohesionandolas. Usuando las entidades en los servicios.
+
+El archivo configuración guardará todo lo relacionado con la configuración 
+específica del proyecto. 
+
+Sería Controlador, Servicio(POJO en el medio de servicios -> entities), 
+Repositorio 
+
 

@@ -1,9 +1,8 @@
-import single_responsability_and_SOLID.controller.UsuarioBuilder;
-import single_responsability_and_SOLID.controller.Usuarios;
-import single_responsability_and_SOLID.data_access.UsuariosDB;
-import single_responsability_and_SOLID.data_access.UsuariosDBData;
-import single_responsability_and_SOLID.data_access.UsuariosDBMemory;
-import single_responsability_and_SOLID.data_access.UsuariosDBTxt;
+import single_responsability_and_SOLID.services.UsuarioBuilder;
+import single_responsability_and_SOLID.services.UsuariosService;
+import single_responsability_and_SOLID.repositories.UsuariosDB;
+import single_responsability_and_SOLID.repositories.UsuariosDBMemory;
+import single_responsability_and_SOLID.repositories.UsuariosDBTxt;
 import single_responsability_and_SOLID.services.UsuariosNivel;
 
 /**
@@ -23,9 +22,9 @@ public class Main {
      */
     public static void main(String[] args) {
         UsuariosDB usuariosDB = factoryUsuarioDB("texto");
-        Usuarios usuarios = new Usuarios(usuariosDB);
+        UsuariosService usuariosService = new UsuariosService(usuariosDB);
 
-        usuarios.addUser(new UsuarioBuilder(args[1])
+        usuariosService.addUser(new UsuarioBuilder(args[1])
                 .setNombre(args[3])
                 .setApellidos(args[5])
                 .setEmail(args[7])
@@ -35,7 +34,7 @@ public class Main {
 
         System.out.println("Se creo el primer usuario, el por argumentos.");
 
-        usuarios.addUser(new UsuarioBuilder("openbootcamp")
+        usuariosService.addUser(new UsuarioBuilder("openbootcamp")
                 .setNombre("Open")
                 .setApellidos("Bootcamp")
                 .setEmail("ejemplos@open-bootcamp.com")
@@ -45,7 +44,7 @@ public class Main {
 
         System.out.println("Se creo segundo usuario por método.");
 
-        usuarios.addUser(new UsuarioBuilder("openbootcamp2")
+        usuariosService.addUser(new UsuarioBuilder("openbootcamp2")
                 .setNombre("Open2")
                 .setApellidos("Bootcamp2")
                 .setEmail("ejemplos2@open-bootcamp.com")
@@ -55,7 +54,7 @@ public class Main {
 
         System.out.println("Se creo tercer usuario por método.");
 
-        usuarios.addUser(new UsuarioBuilder("openbootcamp3")
+        usuariosService.addUser(new UsuarioBuilder("openbootcamp3")
                 .setNombre("Open3")
                 .setApellidos("Bootcamp3")
                 .setEmail("ejemplos3@open-bootcamp.com")
@@ -65,7 +64,7 @@ public class Main {
 
         System.out.println("Se creo cuarto usuario por método.");
 
-        usuarios.addUser(new UsuarioBuilder("openbootcamp3")
+        usuariosService.addUser(new UsuarioBuilder("openbootcamp3")
                 .setNombre("Open3")
                 .setApellidos("Bootcamp3")
                 .setEmail("ejemplos3@open-bootcamp.com")
@@ -75,22 +74,22 @@ public class Main {
 
         System.out.println("Se intentó agregar cuarto usuario de nuevo.");
 
-        usuarios.getAll();
+        usuariosService.getAll();
 
-        System.out.println("\n" + usuarios.getUser("Valwolfor").getNombreUsuario() + "\n");
+        System.out.println("\n" + usuariosService.getUser("Valwolfor").getNombreUsuario() + "\n");
 
-        usuarios.deleteUser("openbootcamp");
+        usuariosService.deleteUser("openbootcamp");
 
-        usuarios.getAll();
+        usuariosService.getAll();
 
-        usuarios.deleteUser("openbootcamp");
+        usuariosService.deleteUser("openbootcamp");
 
-        UsuariosNivel usuariosLvl = new UsuariosNivel(usuarios);
+        UsuariosNivel usuariosLvl = new UsuariosNivel(usuariosService);
         System.out.println("=============================================");
 
-        usuariosLvl.isAdmin(usuarios.getUser("Valwolfor"));
-        usuariosLvl.isStudent(usuarios.getUser("openbootcamp2"));
-        usuariosLvl.isGuest(usuarios.getUser("openbootcamp3"));
+        usuariosLvl.isAdmin(usuariosService.getUser("Valwolfor"));
+        usuariosLvl.isStudent(usuariosService.getUser("openbootcamp2"));
+        usuariosLvl.isGuest(usuariosService.getUser("openbootcamp3"));
 
 
         mostrarEstadisticas(usuariosDB);
