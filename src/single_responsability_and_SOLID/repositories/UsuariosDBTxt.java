@@ -1,6 +1,6 @@
 package single_responsability_and_SOLID.repositories;
 
-import single_responsability_and_SOLID.services.UsuarioBuilder;
+import single_responsability_and_SOLID.entities.UsuarioBuilder;
 import single_responsability_and_SOLID.entities.Usuario;
 
 import java.io.*;
@@ -181,7 +181,7 @@ public class UsuariosDBTxt extends UsuariosDB implements  UsuariosDBData {
                 .setEmail(args[3])
                 .setNivelDeAcceso(Integer.parseInt(args[4]));
 
-        return builderUser.getUsuario();
+        return builderUser.bulidUsuario();
     }
 
     /**

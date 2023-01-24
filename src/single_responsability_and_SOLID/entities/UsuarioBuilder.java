@@ -1,41 +1,45 @@
-package single_responsability_and_SOLID.services;
-
-import single_responsability_and_SOLID.entities.Usuario;
+package single_responsability_and_SOLID.entities;
 
 /**
  * Constructor de usuario.
  * @author BMO
  */
 public class UsuarioBuilder {
-    private Usuario usuario;
+    private final Usuario usuario = new Usuario();
 
     private UsuarioBuilder(){
 
     }
     public UsuarioBuilder(String sNombreUsuario) {
-        usuario = new Usuario();
+        usuario.setNombre("sin nombre");
+        usuario.setApellidos("sin apellidos");
+        usuario.setEmail("sin email");
+        usuario.setNivelAcceso(0);
+
         usuario.setNombreUsuario(sNombreUsuario);
     }
 
     public UsuarioBuilder setNombre(String sNombre){
-        usuario.setNombre(sNombre);
+        usuario.setNombre(sNombre.length() > 0 ? sNombre: "sin nombre");
         return this;
     }
 
     public UsuarioBuilder setApellidos(String sApellidos){
-        usuario.setApellidos(sApellidos);
+        usuario.setApellidos(sApellidos.length() > 0 ? sApellidos: "sin apellidos");
         return this;
     }
     public UsuarioBuilder setEmail(String sEmail){
-        usuario.setEmail(sEmail);
+        usuario.setEmail(sEmail.length() > 0 ? sEmail: "sin email");
         return this;
     }
     public UsuarioBuilder setNivelDeAcceso(int sNivel){
-        usuario.setNivelAcceso(sNivel);
+        usuario.setNivelAcceso(sNivel > 0 ? sNivel: 0);
         return this;
     }
 
-    public Usuario getUsuario() {
+    public Usuario bulidUsuario() {
         return usuario;
     }
+
+
 }

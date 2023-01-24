@@ -9,11 +9,11 @@ package single_responsability_and_SOLID.entities;
  * <a href="https://github.com/Open-Bootcamp/java_avanzado/tree/master/sesiones_19_20_21/src/Sesion21/Inicial">Respositorio</a>
  */
 public class Usuario {
-    private String nombreUsuario;
-    private String nombre;
-    private String apellidos;
+    private String nombreUsuario = "";
+    private String nombre = "";
+    private String apellidos = "";
     private String email = "";
-    private int nivelAcceso;
+    private int nivelAcceso = 0;
 
     public String getNombreUsuario() {
         return nombreUsuario;
@@ -55,5 +55,14 @@ public class Usuario {
         this.nivelAcceso = nivelAcceso;
     }
 
-
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "nombreUsuario='" + nombreUsuario + '\'' +
+                ", nombre='" + nombre + '\'' +
+                ", apellidos='" + apellidos + '\'' +
+                ", email='" + email + '\'' +
+                ", nivelAcceso=" + nivelAcceso +
+                '}';
+    }
 }

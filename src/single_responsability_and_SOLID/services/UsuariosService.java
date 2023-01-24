@@ -1,7 +1,9 @@
 package single_responsability_and_SOLID.services;
 
 import single_responsability_and_SOLID.entities.Usuario;
+import single_responsability_and_SOLID.entities.UsuarioBuilder;
 import single_responsability_and_SOLID.repositories.UsuariosDB;
+import single_responsability_and_SOLID.repositories.UsuariosDBFactory;
 
 import java.util.ArrayList;
 
@@ -21,8 +23,9 @@ public class UsuariosService {
     private UsuariosDB usuariosBD;
     private ArrayList<Usuario> usuarios;
 
-    public UsuariosService(UsuariosDB usuariosBD) {
-        this.usuariosBD = usuariosBD;
+    public UsuariosService(String tipoDB) {
+        UsuariosDBFactory sdbf = new UsuariosDBFactory(tipoDB);
+        this.usuariosBD = sdbf.databaseInstance();
     }
 
     /**
@@ -47,8 +50,11 @@ public class UsuariosService {
      * Verica la existencia del usuario de ser falso lo integra al archivo.
      *
      * @param newUsuario Objeto de Usuario que se ingresa en el archivo.
+     * @see "checkFields()"
      */
     public void addUser(Usuario newUsuario) {
+        newUsuario = checkFields(newUsuario);
+
         usuariosBD.addUser(newUsuario);
     }
 
@@ -64,5 +70,22 @@ public class UsuariosService {
 
     public UsuariosDB getUsuariosBD() {
         return this.usuariosBD;
+    }
+
+    /**
+     * Verifica que los campos no esté vacíos y los rellena con valores por defecto en caso
+     * contrario.
+     *
+     * @param usuario Objeto Usuario a verificar.
+     * @return Usuario con los campos verificados. Con lo existe | con los por defecto.
+     */
+    private Usuario checkFields(Usuario usuario) {
+        return new UsuarioBuilder(usuario.getNombreUsuario())
+                .setNombre(usuario.getNombre())
+                .setApellidos(usuario.getApellidos())
+                .setEmail(usuario.getEmail())
+                .setNivelDeAcceso(usuario.getNivelAcceso())
+                .bulidUsuario();
+
     }
 }
